@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PVB Store - Pricelist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .join-server-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .join-server-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+        }
+
+        .join-server-btn:active {
+            transform: scale(0.98);
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .item-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.6s ease;
+            animation-fill-mode: both;
+        }
+
+        .item-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .item-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+        }
+
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .item-content {
+            padding: 25px;
+        }
+
+        .item-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .item-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            min-height: 60px;
+        }
+
+        .item-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .item-price {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #667eea;
+            text-align: center;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .buy-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            flex: 1;
+            text-align: center;
+        }
+
+        .buy-button.whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+
+        .buy-button.telegram {
+            background: linear-gradient(135deg, #0088cc 0%, #0077b5 100%);
+        }
+
+        .buy-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .buy-button:active {
+            transform: scale(0.98);
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 30px;
+            font-size: 1.1em;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 2px solid white;
+            transition: opacity 0.3s ease;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .item-card:nth-child(1) { animation-delay: 0.1s; }
+        .item-card:nth-child(2) { animation-delay: 0.2s; }
+        .item-card:nth-child(3) { animation-delay: 0.3s; }
+        .item-card:nth-child(4) { animation-delay: 0.4s; }
+        .item-card:nth-child(5) { animation-delay: 0.5s; }
+        .item-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .items-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .item-footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .buy-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 PVB Store</h1>
+            <p>Koleksi Item PVB Terbaik</p>
+            <a href="https://www.roblox.com/share?code=610f9644048f5746bb3547299c7db23c&type=Server" target="_blank" class="join-server-btn">🎯 JOIN PRIVATE SERVER</a>
+        </header>
+
+        <div class="items-grid" id="itemsGrid">
+            <!-- Item cards akan ditambahkan di sini -->
+        </div>
+
+        <footer>
+            <p>Untuk pembelian, hubungi kami di <a href="https://t.me/ngeselinsih" target="_blank">Telegram</a></p>
+            <p style="margin-top: 10px; opacity: 0.8;">💬 Fast Response | ✅ Trusted Seller</p>
+        </footer>
+    </div>
+
+    <script>
+        // Data items - kamu bisa edit ini sesuai dengan item yang kamu jual
+        const items = [
+            {
+                name: "Dragon Cannelloni (gold)",
+                description: "Dragon dengan mutasi gold, stok tersisa 50+",
+                price: "Rp 10.000",
+                image: "🎩",
+                imageUrl: "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2025/09/best-brainrots-in-plants-vs-brainrots-1.jpg?q=49&fit=crop&w=825&dpr=2" // Kosongkan jika ingin pakai emoji, atau isi dengan URL gambar
+            },
+            {
+                name: "Dragon Cannelloni (rainbow)",
+                description: "Dragon dengan mutasi gold, stok tersisa 10+",
+                price: "Rp 20.000",
+                image: "⚔️",
+                imageUrl: "Dragon Cannelloni (gold)"
+            },
+            {
+                name: "All Secret Brainrots",
+                description: "Brainrot tier secret,stock 100+",
+                price: "Rp 5.000",
+                image: "🌈",
+                imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYcN54zDISh6AJvVARIPeiHYt6WBOiM4yGfA&s"
+            },
+            {
+                name: "MR CARROT (plants)",
+                description: "Mr carrot damage 3.5k - 5k, stock 20+",
+                price: "Rp 5.000",
+                image: "👑",
+                imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpGLmqU4410YHm4-yc2Ral43GguDnl2j1yCg&s"
+            }
+        ];
+
+        // Render items
+        const itemsGrid = document.getElementById('itemsGrid');
+        
+        items.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'item-card';
+            
+            const imageContent = item.imageUrl 
+                ? `<img src="${item.imageUrl}" alt="${item.name}">`
+                : item.image;
+            
+            card.innerHTML = `
+                <div class="item-image">
+                    ${imageContent}
+                </div>
+                <div class="item-content">
+                    <div class="item-name">${item.name}</div>
+                    <div class="item-description">${item.description}</div>
+                    <div class="item-footer">
+                        <div class="item-price">${item.price}</div>
+                        <div class="button-group">
+                            <a href="https://wa.me/62882005903695?text=Halo,%20saya%20ingin%20order%20${encodeURIComponent(item.name)}" target="_blank" class="buy-button whatsapp">📱 WhatsApp</a>
+                            <a href="https://t.me/ngeselinsih" target="_blank" class="buy-button telegram">✈️ Telegram</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            itemsGrid.appendChild(card);
+        });
+    </script>
+</body>
+</html>
